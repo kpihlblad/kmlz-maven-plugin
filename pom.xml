@@ -2,24 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>kumuluzee-tools</artifactId>
-        <groupId>com.kumuluz.ee</groupId>
-        <version>4.1.0</version>
-    </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>maven-plugin</packaging>
 
+    <groupId>io.github.kpihlblad</groupId>
+    <artifactId>kumuluzee-maven-plugin</artifactId>
+    <version>4.1.0-p1</version>
+
     <name>KumuluzEE Maven Plugin temporary fix</name>
     <description>KumuluzEE maven plugin for building single uber jars</description>
 
-    <groupId>io.github.kpihlblad</groupId>
-    <artifactId>kumuluzee-maven-plugin</artifactId>
-
     <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kumuluzee.plugin.test.skip>false</kumuluzee.plugin.test.skip>
+        <kumuluzee.version>4.1.0</kumuluzee.version>
     </properties>
+
+
 
     <licenses>
         <license>
@@ -46,28 +48,33 @@
         <dependency>
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-loader</artifactId>
+            <version>${kumuluzee.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
+            <version>3.8.5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.6.4</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.twdata.maven</groupId>
             <artifactId>mojo-executor</artifactId>
+            <version>2.3.2</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>2.12.7.1</version>
         </dependency>
 
         <dependency>
@@ -91,7 +98,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>${maven-dependency-plugin.version}</version>
+                <version>3.1.2</version>
                 <executions>
                     <execution>
                         <id>include-loader</id>
@@ -105,7 +112,7 @@
                                 <artifactItem>
                                     <groupId>com.kumuluz.ee</groupId>
                                     <artifactId>kumuluzee-loader</artifactId>
-                                    <version>${project.version}</version>
+                                    <version>${kumuluzee.version}</version>
                                     <destFileName>kumuluzee-loader.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
@@ -119,7 +126,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
-                <version>${maven-plugin-plugin.version}</version>
+                <version>3.6.0</version>
                 <configuration>
                     <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
                 </configuration>
