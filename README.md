@@ -2,13 +2,12 @@
 
 > A fixed Maven Plugin for the Kumuluz EE microservice framework
 
-Applied patches in https://github.com/kpihlblad/kumuluzee/tree/maven-kumuluzee-run-exec to the official KumuluzEE Maven Plugin.
+A quick fix for a small problem in the [official Kumuluzee Maven Plugin](https://github.com/kumuluz/kumuluzee) 
 
-Triggering the package goal phase before starting, to enable a one-goal start using the `kumuluzee:run` goal.
+The target `kumuluzee:run` triggers the package goal phase before starting, to enable a one-liner build and start.
 
-Also uses the 'exec' goal to spawn a new java process,
-to avoid a conflict(?) betweeb the Plexus Launcher and the Kumuluzee Launcher.
-
+It also uses the 'exec' goal to spawn a new java process,
+to avoid a conflict(?) between the Plexus Launcher and the Kumuluzee Launcher.
 
 
 ## Usage
