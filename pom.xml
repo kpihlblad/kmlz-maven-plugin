@@ -8,7 +8,7 @@
 
     <groupId>io.github.kpihlblad</groupId>
     <artifactId>kumuluzee-maven-plugin</artifactId>
-    <version>4.1.0-p6</version>
+    <version>4.1.0-p7</version>
 
     <name>KumuluzEE Maven Plugin temporary fix</name>
     <description>KumuluzEE maven plugin for building single uber jars</description>
@@ -21,6 +21,20 @@
         <kumuluzee.version>4.1.0</kumuluzee.version>
     </properties>
 
+    <developers>
+        <developer>
+            <id>kumuluz</id>
+            <name>KumuluzEE Development Team</name>
+            <email>info@kumuluz.com</email>
+            <url>https://github.com/kumuluz</url>
+        </developer>
+        <developer>
+            <id>karlp</id>
+            <name>Karl Pihlblad</name>
+            <url>https://github.com/kpihlblad/kmlz-maven-plugin</url>
+        </developer>
+
+    </developers>
 
 
     <licenses>
