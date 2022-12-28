@@ -14,7 +14,7 @@
     <name>KumuluzEE Maven Plugin temporary fix</name>
     <description>KumuluzEE maven plugin for building single uber jars</description>
 
-    <groupId>se.grynna.kmlz</groupId>
+    <groupId>io.github.kpihlblad</groupId>
     <artifactId>kumuluzee-maven-plugin</artifactId>
 
     <properties>

@@ -17,7 +17,7 @@ Include the plugin in your project:
 
 ```xml
 <plugin>
-    <groupId>se.grynna.kmlz</groupId>
+    <groupId>io.github.kpihlblad</groupId>
     <artifactId>kumuluzee-maven-plugin</artifactId>
     <version>${kumuluzee.version}</version>
 </plugin>
