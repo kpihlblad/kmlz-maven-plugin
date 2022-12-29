@@ -28,6 +28,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 
 import java.io.File;
 
+import static com.kumuluz.ee.maven.plugin.util.ClassPathUtil.javaCmd;
 import static org.twdata.maven.mojoexecutor.MojoExecutor.*;
 
 /**
@@ -70,27 +71,4 @@ public class RunExplodedMojo extends AbstractCopyDependenciesMojo {
         );
     }
 
-
-    private String javaCmd() {
-        String javaHome = System.getenv("JAVA_HOME");
-        String javaCmd = System.getProperty("JAVACMD");
-
-        if (javaCmd == null || javaCmd.isEmpty()) {
-            if (javaHome != null && !javaHome.isEmpty()) {
-                File javaBin = new File(javaHome, "jre/sh/java");
-                if (javaBin.isFile() && javaBin.canExecute()) {
-                    // IBM's JDK on AIX uses strange locations for the executables
-                    javaCmd = javaBin.getAbsolutePath();
-                } else {
-                    javaBin = new File(javaHome, "bin/java");
-                    if (javaBin.isFile() && javaBin.canExecute()) {
-                        javaCmd = javaBin.getAbsolutePath();
-                    }
-                }
-            } else {
-                javaCmd = "java";
-            }
-        }
-        return javaCmd;
-    }
 }
