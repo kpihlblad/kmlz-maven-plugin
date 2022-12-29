@@ -8,7 +8,7 @@
 
     <groupId>io.github.kpihlblad</groupId>
     <artifactId>kumuluzee-maven-plugin</artifactId>
-    <version>4.1.0.1</version>
+    <version>4.1.0.2</version>
 
     <name>KumuluzEE Maven Plugin temporary fix</name>
     <description>KumuluzEE maven plugin for building single uber jars</description>

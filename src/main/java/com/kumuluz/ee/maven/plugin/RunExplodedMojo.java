@@ -17,14 +17,14 @@
  *  out of or in connection with the software or the use or other dealings in the
  *  software. See the License for the specific language governing permissions and
  *  limitations under the License.
-*/
+ */
 package com.kumuluz.ee.maven.plugin;
 
-import org.apache.maven.execution.MavenSession;
-import org.apache.maven.plugin.BuildPluginManager;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugins.annotations.*;
-import org.apache.maven.project.MavenProject;
+import org.apache.maven.plugins.annotations.Execute;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.ResolutionScope;
 
 import java.io.File;
 
@@ -60,7 +60,7 @@ public class RunExplodedMojo extends AbstractCopyDependenciesMojo {
                 ),
                 goal("exec"),
                 configuration(
-                        element(name("executable"), "java"),
+                        element(name("executable"), javaCmd()),
                         element(name("arguments"),
                                 element(name("argument"), "-cp"),
                                 element(name("argument"), String.format(CLASSPATH_FORMAT, File.separator, File.pathSeparator)),
@@ -68,5 +68,29 @@ public class RunExplodedMojo extends AbstractCopyDependenciesMojo {
                 ),
                 executionEnvironment(project, session, buildPluginManager)
         );
+    }
+
+
+    private String javaCmd() {
+        String javaHome = System.getenv("JAVA_HOME");
+        String javaCmd = System.getProperty("JAVACMD");
+
+        if (javaCmd == null || javaCmd.isEmpty()) {
+            if (javaHome != null && !javaHome.isEmpty()) {
+                File javaBin = new File(javaHome, "jre/sh/java");
+                if (javaBin.isFile() && javaBin.canExecute()) {
+                    // IBM's JDK on AIX uses strange locations for the executables
+                    javaCmd = javaBin.getAbsolutePath();
+                } else {
+                    javaBin = new File(javaHome, "bin/java");
+                    if (javaBin.isFile() && javaBin.canExecute()) {
+                        javaCmd = javaBin.getAbsolutePath();
+                    }
+                }
+            } else {
+                javaCmd = "java";
+            }
+        }
+        return javaCmd;
     }
 }
