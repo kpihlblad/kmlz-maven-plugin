@@ -8,7 +8,7 @@
 
     <groupId>io.github.kpihlblad</groupId>
     <artifactId>kumuluzee-maven-plugin</artifactId>
-    <version>4.1.0</version>
+    <version>4.1.0.1</version>
 
     <name>KumuluzEE Maven Plugin temporary fix</name>
     <description>KumuluzEE maven plugin for building single uber jars</description>
@@ -19,6 +19,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kumuluzee.plugin.test.skip>false</kumuluzee.plugin.test.skip>
         <kumuluzee.version>4.1.0</kumuluzee.version>
+
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
+
     </properties>
 
     <developers>
