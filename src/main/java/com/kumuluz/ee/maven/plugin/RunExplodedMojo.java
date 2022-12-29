@@ -28,7 +28,6 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 
 import java.io.File;
 
-import static com.kumuluz.ee.maven.plugin.util.ClassPathUtil.javaCmd;
 import static org.twdata.maven.mojoexecutor.MojoExecutor.*;
 
 /**
@@ -46,10 +45,11 @@ import static org.twdata.maven.mojoexecutor.MojoExecutor.*;
 @Execute(phase = LifecyclePhase.PACKAGE)
 public class RunExplodedMojo extends AbstractCopyDependenciesMojo {
 
+    private static final String CLASSPATH_FORMAT = "target%1$sclasses%2$starget%1$sdependency%1$s*";
+
     @Override
     public void execute() throws MojoExecutionException {
 
-        final String CLASSPATH_FORMAT = "target%1$sclasses%2$starget%1$sdependency%1$s*";
 
         copyDependencies();
 
@@ -71,4 +71,34 @@ public class RunExplodedMojo extends AbstractCopyDependenciesMojo {
         );
     }
 
+    public static String javaCmd() {
+        File javaCmd = fileForEnv("JAVACMD");
+
+        if (javaCmd != null) {
+            return javaCmd.getAbsolutePath();
+        }
+
+        File javaHome = fileForEnv("JAVA_HOME");
+        if (javaHome != null) {
+
+            String[] paths = {"jre/sh/java", "bin/java", "bin/java.exe"};
+
+            for( String path : paths ) {
+                File f = new File(javaHome, path);
+                if (f.isFile() && f.canExecute()) {
+                    return f.getAbsolutePath();
+                }
+            }
+        }
+        return "java";
+    }
+
+    private static File fileForEnv(String env) {
+        String s = System.getenv(env);
+        if (s == null || s.isEmpty()) {
+            return null;
+        } else {
+            return new File(s);
+        }
+    }
 }
