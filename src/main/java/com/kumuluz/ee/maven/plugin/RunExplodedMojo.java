@@ -62,6 +62,7 @@ public class RunExplodedMojo extends AbstractCopyDependenciesMojo {
                 goal("exec"),
                 configuration(
                         element(name("executable"), javaCmd()),
+                        element(name("inheritIo"), "true"),
                         element(name("arguments"),
                                 element(name("argument"), "-cp"),
                                 element(name("argument"), String.format(CLASSPATH_FORMAT, File.separator, File.pathSeparator)),
